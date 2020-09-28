@@ -12,3 +12,9 @@ $ source /path/to/venvs/locust/bin/activate
 ```
 2. On the GUI configure the number of users to simulate, hatch rate and the host URL to test.
 3. Star the test and check the statistics.
+
+### Docekr compose
+
+```bash
+(locust) $ docker-compose up --scale worker=4
+```
