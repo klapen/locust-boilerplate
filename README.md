@@ -4,12 +4,12 @@ Boilerplate to configure and test Locust.
 
 ## Before you start
 
-This project is to have a quick tool to load test endpoints, using a [CSV file](/src/urls.csv) to configure the endpoints to test. For testing, [Locust]() set 2 main variables to configure:
+This project is a quick tool to make load test, using a [CSV file](/src/urls.csv) to configure the test endpoints. For testing, [Locust](https://locust.io/) set 2 main variables to configure:
 
 - Number of users to simulate
 - Hatch rate or the user number to start per second
 
-To run the `docker-compose` you will need to have [Docker](https://www.docker.com/get-started) installed and running on your machine. If you like terminals and consoles, you will just need to have [Python3](https://www.python.org/download/releases/3.0/) on your machine.
+To run the `docker-compose` option, you will need to have [Docker](https://www.docker.com/get-started) installed and running on your machine. If you like terminals and consoles, you will just need to have [Python3](https://www.python.org/download/releases/3.0/) on your machine.
 
 ## How to use 
 
@@ -19,7 +19,7 @@ Before you start, please update the file `/src/urls.csv` with the endpoints you 
 - *headers*: Custom headers required for the request.
 - *payload*: Data to be sent to the endpoint.
 
-**NOTE**: Please note that _headers_ and _payload_ columns are a string that represents a JSON, so that requires to use double quotation (`""`) to parse it properly the fields on the request.
+**NOTE**: Please note that _headers_ and _payload_ columns are a string that represents a JSON, so that requires to use double quotation (`""`) on the fields to parse them properly on the request.
 ```
 "{""Content-Type"": ""application/json""}"
 ```
@@ -47,7 +47,7 @@ $ source /path/to/venvs/locust/bin/activate
 This method performs a distributed test, using master and workers to increase the number of concurrent requests.
 
 1. Validate that Docker is running. 
-2. Run docker-compose with the number of workers
+2. Run docker-compose with the desired number of workers
 ```bash
 $ docker-compose up --scale worker=4
 ```
