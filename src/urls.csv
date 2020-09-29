@@ -1,0 +1,4 @@
+method,url,headers,payload
+get,/,"{""Content-Type"": ""application/json""}",
+get,/v1,"{""Content-Type"": ""application/json""}",
+get,/health,"{""Content-Type"": ""application/json""}",

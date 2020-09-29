@@ -8,12 +8,14 @@ services:
     network_mode: host
     volumes:
       - ./src:/mnt/locust
-    command: -f /mnt/locust/load_test.py --master -H http://localhost:3030
+    working_dir: /mnt/locust
+    command: -f load_test.py --master -H http://localhost:3030
 
   worker:
     image: locustio/locust
     network_mode: host
     volumes:
       - ./src:/mnt/locust
-    command: -f /mnt/locust/load_test.py --worker --master-host localhost
+    working_dir: /mnt/locust
+    command: -f load_test.py --worker --master-host localhost
   
