@@ -1,20 +1,55 @@
-# locust-boilerplate
+# Locust boilerplate
 
-Boiler plate to configure and test Locust 
+Boilerplate to configure and test Locust.
 
-## How to use
-1. Install pre-requisites and run locust
+## Before you start
+
+This project is to have a quick tool to load test endpoints, using a [CSV file](/src/urls.csv) to configure the endpoints to test. For testing, [Locust]() set 2 main variables to configure:
+
+- Number of users to simulate
+- Hatch rate or the user number to start per second
+
+To run the `docker-compose` you will need to have [Docker](https://www.docker.com/get-started) installed and running on your machine. If you like terminals and consoles, you will just need to have [Python3](https://www.python.org/download/releases/3.0/) on your machine.
+
+## How to use 
+
+Before you start, please update the file `/src/urls.csv` with the endpoints you want to test. The columns required on the file are:
+- *method*: HTTP request method to use.
+- *url*: Endpoint path to test.
+- *headers*: Custom headers required for the request.
+- *payload*: Data to be sent to the endpoint.
+
+**NOTE**: Please note that _headers_ and _payload_ columns are a string that represents a JSON, so that requires to use double quotation (`""`) to parse it properly the fields on the request.
+```
+"{""Content-Type"": ""application/json""}"
+```
+
+### Command line
+
+This method will run the test on a single machine.
+
+1. Install pre-requisites
 ```bash
 $ python -m venv /path/to/venvs/locust
 $ source /path/to/venvs/locust/bin/activate
 (locust) $ pip install -r requirements.txt
-(locust) $ locust -f src/load_test.py
 ```
-2. On the GUI configure the number of users to simulate, hatch rate and the host URL to test.
-3. Star the test and check the statistics.
-
-### Docekr compose
-
+2. Run locust
 ```bash
-(locust) $ docker-compose up --scale worker=4
+(locust) $ cd src
+(locust) $ locust -f load_test.py
 ```
+3. On the GUI configure the number of users to simulate, hatch rate, and the host URL to test.
+4. Star the test and check the statistics.
+
+### Docker compose
+
+This method performs a distributed test, using master and workers to increase the number of concurrent requests.
+
+1. Validate that Docker is running. 
+2. Run docker-compose with the number of workers
+```bash
+$ docker-compose up --scale worker=4
+```
+3. On the GUI configure the number of users to simulate, hatch rate, and the host URL to test.
+4. Star the test and check the statistics.
